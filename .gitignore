@@ -16,6 +16,8 @@
 
 /.idea/
 
+/Packages/com.ptc.vuforia.engine-10.15.4.tgz
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
