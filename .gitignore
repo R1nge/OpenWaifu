@@ -18,6 +18,9 @@
 
 /Packages/com.ptc.vuforia.engine-10.15.4.tgz
 
+/Packages/com.github.homuler.mediapipe/Runtime/Plugins
+/Packages/com.github.homuler.mediapipe/Runtime/Plugins.meta
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
