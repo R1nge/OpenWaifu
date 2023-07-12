@@ -441,7 +441,7 @@ PlayerSettings:
   m_DefaultShaderChunkCount: 0
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
-  openGLRequireES32: 0
+  openGLRequireES32: 1
   m_TemplateCustomTags: {}
   mobileMTRendering:
     Android: 1
@@ -737,9 +737,9 @@ PlayerSettings:
   scriptingBackend:
     Android: 1
   il2cppCompilerConfiguration:
-    Android: 0
-  il2cppCodeGeneration:
     Android: 1
+  il2cppCodeGeneration:
+    Android: 0
   managedStrippingLevel:
     Bratwurst: 1
     EmbeddedLinux: 1

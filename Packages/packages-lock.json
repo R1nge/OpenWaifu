@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.github.homuler.mediapipe": {
+      "version": "file:com.github.homuler.mediapipe",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.ptc.vuforia.engine": {
       "version": "file:com.ptc.vuforia.engine-10.15.4.tgz",
       "depth": 0,
@@ -266,13 +272,6 @@
         "com.unity.xr.legacyinputhelpers": "2.1.7"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.whisper.unity": {
-      "version": "https://github.com/Macoron/whisper.unity.git?path=/Packages/com.whisper.unity#1.1.1",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "9ffa632c3705a19600025f29f7a6dcd4d2043189"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
