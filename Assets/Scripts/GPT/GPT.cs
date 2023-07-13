@@ -57,9 +57,8 @@ namespace GPT
                 foreach (var choice in
                          result.Choices.Where(choice => !string.IsNullOrWhiteSpace(choice.Delta?.Content)))
                 {
-                    // Partial response content
                     res += choice.Delta.Content;
-                    //Debug.Log(choice.Delta.Content);
+
                     response.text = $"{res}";
                 }
 
