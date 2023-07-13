@@ -19,7 +19,7 @@ namespace Mediapipe.Unity.UI
     private const string _ResolutionPath = "Scroll View/Viewport/Contents/Resolution/Dropdown";
     private const string _IsHorizontallyFlippedPath = "Scroll View/Viewport/Contents/IsHorizontallyFlipped/Toggle";
 
-    private Solution _solution;
+    private HandTrackingModel _solution;
     private Dropdown _sourceTypeInput;
     private Dropdown _sourceInput;
     private Dropdown _resolutionInput;
@@ -29,7 +29,7 @@ namespace Mediapipe.Unity.UI
 
     private void Start()
     {
-      _solution = GameObject.Find("Solution").GetComponent<Solution>();
+      _solution = FindObjectOfType<HandTrackingModel>();
       InitializeContents();
     }
 
