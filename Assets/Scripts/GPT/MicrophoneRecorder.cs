@@ -1,49 +1,35 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class MicrophoneRecorder : MonoBehaviour
+namespace GPT
 {
-    [SerializeField] private TextMeshProUGUI buttonText;
-    [SerializeField] private Button record;
-    [SerializeField] private TMP_Dropdown microphones;
-    private AudioClip _audio;
-    private bool _isRecording;
-    private string _currentMicrophone;
-
-    public event Action<AudioClip> OnStoppedRecording;
-
-    private void Awake()
+    public class MicrophoneRecorder
     {
-        microphones.options.Clear();
-
-        for (int i = 0; i < Microphone.devices.Length; i++)
-        {
-            microphones.options.Add(new TMP_Dropdown.OptionData($"Microphone: {i}"));    
-        }
-
-        microphones.onValueChanged.AddListener(index => _currentMicrophone = Microphone.devices[index]);
+        private string _currentMicrophone;
+        public bool IsRecording { get; private set; }
+        private AudioClip _audio;
         
-        record.onClick.AddListener(() =>
-        {
-            RecordAndSave();
-            _isRecording = !_isRecording;
-            buttonText.text = _isRecording ? "stop" : "start";
-        });
-    }
+        public event Action<AudioClip> OnStoppedRecording;
 
-    private void RecordAndSave()
-    {
-        if (_isRecording)
+        public void SetMicrophone(int index)
         {
-            Microphone.End(_currentMicrophone);
-
-            OnStoppedRecording?.Invoke(_audio);
+            _currentMicrophone = Microphone.devices[index];
         }
-        else
+
+        public void RecordAndSave()
         {
-            _audio = Microphone.Start(_currentMicrophone, false, 30, 44100);
+            if (IsRecording)
+            {
+                Microphone.End(_currentMicrophone);
+
+                OnStoppedRecording?.Invoke(_audio);
+            }
+            else
+            {
+                _audio = Microphone.Start(_currentMicrophone, false, 30, 44100);
+            }
+
+            IsRecording = !IsRecording;
         }
     }
 }
