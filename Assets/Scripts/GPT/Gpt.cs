@@ -17,9 +17,9 @@ namespace GPT
         public event Action<string> OnDeltaGenerated;
         public event Action<string> OnFinishedGeneration;
 
-        public Gpt(string personality)
+        public Gpt(PersonalitySO personality)
         {
-            _personality = personality;
+            _personality = personality.Personality;
         }
 
         public void Init()
@@ -34,9 +34,9 @@ namespace GPT
             );
         }
 
-        public async void Transcribe(AudioClip clip)
+        public async void Transcribe(AudioClip clip, string language)
         {
-            using (AudioTranscriptionRequest req = new AudioTranscriptionRequest(clip, language: "en"))
+            using (AudioTranscriptionRequest req = new AudioTranscriptionRequest(clip, language: language))
             {
                 var result = await _gptApi.AudioEndpoint.CreateTranscriptionAsync(req);
                 SendRequest(result);
@@ -48,7 +48,7 @@ namespace GPT
             var messages = new List<Message>
             {
                 new(Role.System, _personality),
-                new(Role.User, $"{prompt}"),
+                new(Role.User, $"{prompt}")
             };
 
             var chatRequest = new ChatRequest(messages, Model.GPT3_5_Turbo, number: 1);

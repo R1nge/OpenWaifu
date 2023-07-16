@@ -271,7 +271,7 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   chromeosInputEmulation: 0
-  AndroidMinifyRelease: 1
+  AndroidMinifyRelease: 0
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
@@ -741,7 +741,7 @@ PlayerSettings:
   il2cppCodeGeneration:
     Android: 0
   managedStrippingLevel:
-    Android: 3
+    Android: 4
     Bratwurst: 1
     EmbeddedLinux: 1
     GameCoreScarlett: 1

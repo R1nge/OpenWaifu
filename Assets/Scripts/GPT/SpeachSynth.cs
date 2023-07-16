@@ -6,5 +6,6 @@ namespace GPT
     public interface ISpeechSynth
     {
         Task Synth(string text, AudioSource source);
+        void SetLanguage(string language);
     }
 }

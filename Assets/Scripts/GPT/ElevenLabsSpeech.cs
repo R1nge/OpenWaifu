@@ -14,6 +14,10 @@ namespace GPT
             await Run(text, source);
         }
 
+        public void SetLanguage(string language)
+        {
+        }
+
         private async Task Run(string text, AudioSource source)
         {
             var voice = (await _elevenLabsApi.VoicesEndpoint.GetAllVoicesAsync()).FirstOrDefault();
