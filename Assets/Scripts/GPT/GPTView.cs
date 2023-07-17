@@ -3,6 +3,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
+using VoicevoxBridge;
+
+//Pipeline:
+//Speech recognition using Whisper
+//TODO: translate every language into english
+//Prompt GPT 3.5 Turbo (has very limited memory span)
+//Stream the result
+//TODO: translate it to target language
+//Update the text
+//TODO: translate it into japanese
+//TODO: Send it to voiceVox
+//TODO: play audio from voiceVox
+
+//Basically I need to tranlsate it
+//And link it to VoiceVox
 
 namespace GPT
 {
@@ -17,6 +32,8 @@ namespace GPT
         [SerializeField] private TMP_Dropdown voiceSynthesisers;
         [SerializeField] private TMP_Dropdown whisperLanguages;
 
+        [SerializeField] private VOICEVOX voiceVox;
+        
         private Gpt _gpt;
         private ISpeechSynth _speechSynth;
         private string _language;
@@ -32,13 +49,30 @@ namespace GPT
 
         private void Awake()
         {
+            InitGpt();
+            
+            InitSpeechSynthesisers();
+
+            InitWhisper();
+
+            _microphoneRecorder.OnStoppedRecording += clip => _gpt.Transcribe(clip, _language);
+
+            prompt.onClick.AddListener(() => { SendRequest(request.text); });
+            voiceToggle.onValueChanged.AddListener(voice => { _voice = voice; });
+        }
+
+        private void InitGpt()
+        {
             _gpt = new Gpt(personality);
 
             _gpt.OnDeltaGenerated += UpdateText;
-            _gpt.OnFinishedGeneration += Voice;
+            _gpt.OnFinishedTranslation += Voice;
 
             _gpt.Init();
+        }
 
+        private void InitSpeechSynthesisers()
+        {
             _speechSynth = new GoogleSpeech();
             _speechSynth.SetLanguage("en");
 
@@ -60,36 +94,46 @@ namespace GPT
                 };
             });
 
+            voiceSynthesisers.onValueChanged.AddListener(SetLanguage);
+        }
+
+        private void InitWhisper()
+        {
             whisperLanguages.ClearOptions();
 
             whisperLanguages.AddOptions(new List<TMP_Dropdown.OptionData>
             {
                 new("English"),
-                new("Russian")
+                new("Russian"),
+                new("Japanese")
             });
 
-            whisperLanguages.onValueChanged.AddListener(index =>
+            whisperLanguages.onValueChanged.AddListener(SetLanguage);
+        }
+
+        private void SetLanguage(int index)
+        {
+            _language = index switch
             {
-                _language = index switch
-                {
-                    0 => "en",
-                    1 => "ru",
-                    _ => _language
-                };
-                
-                _speechSynth.SetLanguage(_language);
-            });
+                0 => "en",
+                1 => "ru",
+                2 => "jp",
+                _ => _language
+            };
 
-            _microphoneRecorder.OnStoppedRecording += clip => _gpt.Transcribe(clip, _language);
-
-            prompt.onClick.AddListener(() => { SendRequest(request.text); });
-            voiceToggle.onValueChanged.AddListener(voice => { _voice = voice; });
+            _speechSynth.SetLanguage(_language);
         }
 
         private void SendRequest(string text)
         {
-            voiceAudio.Stop();
+            Stop();
             _gpt.SendRequest(text);
+        }
+
+        private void Stop()
+        {
+            //TODO: add cancellation
+            voiceAudio.Stop();
         }
 
         private void UpdateText(string text)
@@ -97,18 +141,25 @@ namespace GPT
             response.text = text;
         }
 
-        private void Voice(string text)
+        private async void Voice(string text)
         {
-            if (_voice)
-            {
-                _speechSynth.Synth(text, voiceAudio);
-            }
+            // if (_voice)
+            // {
+            //     _speechSynth.Synth(text, voiceAudio);
+            // }
+            
+            int speaker = 3; // ずんだもん あまあま
+           
+            Voice voice = await voiceVox.CreateVoice(speaker, text);
+            await voiceVox.Play(voice);
         }
 
         private void OnDestroy()
         {
             _gpt.OnDeltaGenerated -= UpdateText;
-            _gpt.OnFinishedGeneration -= Voice;
+            _gpt.OnFinishedTranslation -= Voice;
+            whisperLanguages.onValueChanged.RemoveAllListeners();
+            voiceSynthesisers.onValueChanged.RemoveAllListeners();
         }
     }
 }

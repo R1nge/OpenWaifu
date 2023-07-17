@@ -556,7 +556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Language
+  m_text: Whisper
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1054,8 +1054,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d98307714f282c845ad8c6fcf606c27d, type: 2}
+  m_sharedMaterial: {fileID: -8857618154736591330, guid: d98307714f282c845ad8c6fcf606c27d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3051,7 +3051,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1069822940}
   m_HandleRect: {fileID: 1069822939}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3714,8 +3714,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d98307714f282c845ad8c6fcf606c27d, type: 2}
+  m_sharedMaterial: {fileID: -8857618154736591330, guid: d98307714f282c845ad8c6fcf606c27d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4788,6 +4788,7 @@ GameObject:
   - component: {fileID: 1562557295}
   - component: {fileID: 1562557296}
   - component: {fileID: 1562557299}
+  - component: {fileID: 1562557300}
   m_Layer: 0
   m_Name: GPT
   m_TagString: Untagged
@@ -4943,6 +4944,7 @@ MonoBehaviour:
   voiceToggle: {fileID: 803271531}
   voiceSynthesisers: {fileID: 663320922}
   whisperLanguages: {fileID: 1619376135}
+  voiceVox: {fileID: 1562557300}
 --- !u!114 &1562557299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4958,6 +4960,21 @@ MonoBehaviour:
   buttonText: {fileID: 1036079161}
   record: {fileID: 1156356843}
   microphones: {fileID: 824873117}
+--- !u!114 &1562557300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562557290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ae867e188d14872b9f1d50f5af937d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1562557295}
+  voicevoxEngineURL: http://localhost:50021/
+  enableLog: 1
 --- !u!1 &1612505042
 GameObject:
   m_ObjectHideFlags: 0

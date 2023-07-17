@@ -7,7 +7,7 @@ namespace GPT
 {
     public class ElevenLabsSpeech : ISpeechSynth
     {
-        private ElevenLabsClient _elevenLabsApi = new(new ElevenLabsAuthentication("1c6415d19799be04a9054d35d6a5f92d"));
+        private readonly ElevenLabsClient _elevenLabsApi = new(new ElevenLabsAuthentication("1c6415d19799be04a9054d35d6a5f92d"));
 
         public async Task Synth(string text, AudioSource source)
         {
