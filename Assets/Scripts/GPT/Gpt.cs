@@ -13,11 +13,9 @@ namespace GPT
     {
         private readonly string _personality;
         private OpenAIClient _gptApi;
-        private string _response;
 
         public event Action<string> OnDeltaGenerated;
         public event Action<string> OnFinishedGeneration;
-        public event Action<string> OnFinishedTranslation; 
 
         public Gpt(PersonalitySO personality)
         {
@@ -69,28 +67,8 @@ namespace GPT
                              !string.IsNullOrWhiteSpace(choice.Message?.Content)))
                 {
                     OnFinishedGeneration?.Invoke(choice.Message.Content);
-                    _response = choice.Message.Content;
                 }
             });
-            
-            
-            messages = new List<Message>
-            {
-                new(Role.User, $"Translate into Japanese language without transcription. {_response}")
-            };
-
-            chatRequest = new ChatRequest(messages, Model.GPT3_5_Turbo, number: 1);
-            await _gptApi.ChatEndpoint.StreamCompletionAsync(chatRequest, result =>
-            {
-                foreach (var choice in result.Choices.Where(choice =>
-                             !string.IsNullOrWhiteSpace(choice.Message?.Content)))
-                {
-                    OnFinishedTranslation?.Invoke(choice.Message.Content);
-                    Debug.Log(choice.Message.Content);
-                }
-            });
-            
-            
         }
     }
 }

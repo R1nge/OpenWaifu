@@ -556,7 +556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Whisper
+  m_text: Output Language
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4784,8 +4784,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1562557292}
-  - component: {fileID: 1562557298}
   - component: {fileID: 1562557295}
+  - component: {fileID: 1562557298}
   - component: {fileID: 1562557296}
   - component: {fileID: 1562557299}
   - component: {fileID: 1562557300}
@@ -4937,14 +4937,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personality: {fileID: 11400000, guid: 903f7578bf6d0954f841a8d321bda8b9, type: 2}
+  speakerId: 20
   voiceAudio: {fileID: 1562557295}
   request: {fileID: 338464691}
   response: {fileID: 346034180}
   prompt: {fileID: 899901286}
   voiceToggle: {fileID: 803271531}
   voiceSynthesisers: {fileID: 663320922}
-  whisperLanguages: {fileID: 1619376135}
+  outputLanguage: {fileID: 1619376135}
   voiceVox: {fileID: 1562557300}
+  remoteIpAddress: http://192.168.1.167:5000/translate
 --- !u!114 &1562557299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4973,7 +4975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1562557295}
-  voicevoxEngineURL: http://localhost:50021/
+  voicevoxEngineURL: http://192.168.1.167:50021
   enableLog: 1
 --- !u!1 &1612505042
 GameObject:
@@ -5025,7 +5027,7 @@ GameObject:
   - component: {fileID: 1619376136}
   - component: {fileID: 1619376135}
   m_Layer: 5
-  m_Name: Language
+  m_Name: Output Language
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5104,11 +5106,7 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Whisper
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: Output Language
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
