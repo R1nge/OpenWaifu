@@ -24,6 +24,7 @@ namespace GPT
 
         public void SetLanguage(string language)
         {
+            //VoiceVox only supports Japanese
         }
     }
 }

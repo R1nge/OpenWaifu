@@ -20,8 +20,6 @@ namespace GPT
         [SerializeField] private TextMeshProUGUI response;
         [SerializeField] private Button prompt;
         [SerializeField] private Toggle voiceToggle;
-        [SerializeField] private TMP_Dropdown voiceSynthesisers;
-        [SerializeField] private TMP_Dropdown outputLanguage;
         [SerializeField] private VOICEVOX voiceVox;
         [SerializeField] private string remoteIpAddress;
 
@@ -45,9 +43,7 @@ namespace GPT
 
             InitGpt();
 
-            InitSpeechSynthesisers();
-
-            InitWhisper();
+            _speechSynth = new VoiceVoxSpeech(speakerId, voiceVox);
 
             _microphoneRecorder.OnStoppedRecording += clip => _gpt.Transcribe(clip, _inputLanguage);
 
@@ -64,60 +60,6 @@ namespace GPT
             _translator.OnFinishedTranslation += Voice;
 
             _gpt.Init();
-        }
-
-        private void InitSpeechSynthesisers()
-        {
-            _speechSynth = new VoiceVoxSpeech(speakerId, voiceVox);
-
-            voiceSynthesisers.ClearOptions();
-
-            voiceSynthesisers.AddOptions(new List<TMP_Dropdown.OptionData>
-            {
-                new("VoiceVox"),
-                new("11Labs"),
-                new("Google")
-            });
-
-            voiceSynthesisers.onValueChanged.AddListener(index =>
-            {
-                _speechSynth = index switch
-                {
-                    0 => new VoiceVoxSpeech(speakerId, voiceVox),
-                    1 => new ElevenLabsSpeech(),
-                    2 => new GoogleSpeech(),
-                    _ => _speechSynth
-                };
-            });
-
-            voiceSynthesisers.onValueChanged.AddListener(SetOutputLanguage);
-        }
-
-        private void InitWhisper()
-        {
-            outputLanguage.ClearOptions();
-
-            outputLanguage.AddOptions(new List<TMP_Dropdown.OptionData>
-            {
-                new("English"),
-                new("Russian"),
-                new("Japanese")
-            });
-
-            outputLanguage.onValueChanged.AddListener(SetOutputLanguage);
-        }
-
-        private void SetOutputLanguage(int index)
-        {
-            _outputLanguage = index switch
-            {
-                0 => "en",
-                1 => "ru",
-                2 => "ja",
-                _ => _outputLanguage
-            };
-            
-            _speechSynth.SetLanguage(_outputLanguage);
         }
 
         private void SendRequest(string text)
@@ -150,8 +92,6 @@ namespace GPT
             _gpt.OnDeltaGenerated -= UpdateText;
             _gpt.OnFinishedGeneration -= _translator.TranslateToJapanese;
             _translator.OnFinishedTranslation -= Voice;
-            outputLanguage.onValueChanged.RemoveAllListeners();
-            voiceSynthesisers.onValueChanged.RemoveAllListeners();
         }
     }
 }

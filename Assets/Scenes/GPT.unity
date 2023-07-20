@@ -5305,13 +5305,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   personality: {fileID: 11400000, guid: 903f7578bf6d0954f841a8d321bda8b9, type: 2}
   speakerId: 20
-  voiceAudio: {fileID: 1562557295}
+  voiceAudio: {fileID: 0}
   request: {fileID: 338464691}
   response: {fileID: 346034180}
   prompt: {fileID: 899901286}
   voiceToggle: {fileID: 803271531}
-  voiceSynthesisers: {fileID: 663320922}
-  outputLanguage: {fileID: 1619376135}
   voiceVox: {fileID: 1562557300}
   remoteIpAddress: http://192.168.1.167:5000/translate
 --- !u!114 &1562557299

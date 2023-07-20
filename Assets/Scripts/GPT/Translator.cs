@@ -57,6 +57,7 @@ namespace GPT
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(_ip, content);
             string responseString = await response.Content.ReadAsStringAsync();
+            //TODO: redo
             var str = responseString.Replace("translatedText", "");
             Debug.Log("Received: " + str);
             
