@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using VContainer;
 using VoicevoxBridge;
 
-//TODO: translate every language into english
+//TODO: translate every language into english or detect target language
+//TODO: add blink
+//TODO: create a 3d hand from tracking data
 
 namespace GPT
 {
