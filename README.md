@@ -15,5 +15,6 @@ pip install pytorch pytourch-cuda=11.7 -c pytorch -c nvidia
 pip install transformers  
 pip install chardet  
 pip install accelerate   
+pip install pyzmq  
 
 NLLP 2.9GB VRAM
