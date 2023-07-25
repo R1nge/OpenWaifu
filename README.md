@@ -10,10 +10,7 @@ conda activate waifu
 Install dependencies  
 conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
 pip install transformers  
-#pip install chardet  
 pip install accelerate   
 pip install pyzmq  
-#pip install bitsandbytes  
-#pip install scipy  
 
 NLLB 2.9GB VRAM
