@@ -19,5 +19,6 @@ pip install chardet
 pip install accelerate   
 pip install pyzmq  
 pip install bitsandbytes
+pip install scipy  
 
 NLLB 2.9GB VRAM
