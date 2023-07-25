@@ -20,4 +20,4 @@ pip install accelerate
 pip install pyzmq  
 pip install bitsandbytes
 
-NLLP 2.9GB VRAM
+NLLB 2.9GB VRAM
