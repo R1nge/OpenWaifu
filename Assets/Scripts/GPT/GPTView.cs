@@ -1,31 +1,35 @@
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 using VoicevoxBridge;
 
+//TODO: create a 3d hand from tracking data
 //TODO: translate every language into english or detect target language
 //TODO: add blink
-//TODO: create a 3d hand from tracking data
+//TODO: detect emotion behind user voice https://github.com/x4nth055/emotion-recognition-using-speech, 
+//I'll have to create a wrapper around this python lib
 
 namespace GPT
 {
     public class GptView : MonoBehaviour
     {
         [SerializeField] private PersonalitySO personality;
-        [SerializeField, Range(0, 24)] private int speakerId;
+        [SerializeField] private int speakerId; //TODO: create a list with enums (Voice charatcer name, Voice tone)
         [SerializeField] private AudioSource voiceAudio;
         [SerializeField] private TMP_InputField request;
         [SerializeField] private TextMeshProUGUI response;
         [SerializeField] private Button prompt;
         [SerializeField] private Toggle voiceToggle;
+        //TODO: rewrite voicevox to get rid from external dependency
         [SerializeField] private VOICEVOX voiceVox;
-        [SerializeField] private string remoteIpAddress;
+
+        [SerializeField] private MyTcpClient tcpClient;
 
         private Gpt _gpt;
         private ISpeechSynth _speechSynth;
-        private Translator _translator;
         private string _inputLanguage, _outputLanguage;
 
         private MicrophoneRecorder _microphoneRecorder;
@@ -39,8 +43,6 @@ namespace GPT
 
         private void Awake()
         {
-            _translator = new Translator(remoteIpAddress);
-
             InitGpt();
 
             _speechSynth = new VoiceVoxSpeech(speakerId, voiceVox);
@@ -56,8 +58,8 @@ namespace GPT
             _gpt = new Gpt(personality);
 
             _gpt.OnDeltaGenerated += UpdateText;
-            _gpt.OnFinishedGeneration += _translator.TranslateToJapanese;
-            _translator.OnFinishedTranslation += Voice;
+            _gpt.OnFinishedGeneration += tcpClient.RequestMessage;
+            tcpClient.OnFinishedTranslation += Voice;
 
             _gpt.Init();
         }
@@ -90,8 +92,7 @@ namespace GPT
         private void OnDestroy()
         {
             _gpt.OnDeltaGenerated -= UpdateText;
-            _gpt.OnFinishedGeneration -= _translator.TranslateToJapanese;
-            _translator.OnFinishedTranslation -= Voice;
+            tcpClient.OnFinishedTranslation -= Voice;
         }
     }
 }

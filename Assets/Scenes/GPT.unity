@@ -836,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &338464690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -855,7 +855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 298}
+  m_AnchoredPosition: {x: 0, y: 539.8}
   m_SizeDelta: {x: 320, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338464691
@@ -2996,7 +2996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &899901285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3259,7 +3259,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1069822940}
   m_HandleRect: {fileID: 1069822939}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5149,13 +5149,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1562557292}
-  - component: {fileID: 1562557295}
   - component: {fileID: 1562557298}
   - component: {fileID: 1562557296}
   - component: {fileID: 1562557299}
   - component: {fileID: 1562557300}
   - component: {fileID: 1562557303}
   - component: {fileID: 1562557302}
+  - component: {fileID: 1562557295}
+  - component: {fileID: 1562557304}
   m_Layer: 0
   m_Name: GPT
   m_TagString: Untagged
@@ -5304,14 +5305,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personality: {fileID: 11400000, guid: 903f7578bf6d0954f841a8d321bda8b9, type: 2}
-  speakerId: 20
-  voiceAudio: {fileID: 0}
+  speakerId: 46
+  voiceAudio: {fileID: 1562557295}
   request: {fileID: 338464691}
   response: {fileID: 346034180}
   prompt: {fileID: 899901286}
   voiceToggle: {fileID: 803271531}
   voiceVox: {fileID: 1562557300}
-  remoteIpAddress: http://192.168.1.167:5000/translate
+  tcpClient: {fileID: 1562557304}
 --- !u!114 &1562557299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5384,6 +5385,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22df620edb2812f4d905e074db4b67b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1562557304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562557290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba07bf7dff4f4d90b8b05e3396819030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 338464691}
+  send: {fileID: 899901286}
 --- !u!1 &1612505042
 GameObject:
   m_ObjectHideFlags: 0

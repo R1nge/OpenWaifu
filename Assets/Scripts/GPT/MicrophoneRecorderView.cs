@@ -20,7 +20,6 @@ namespace GPT
 
         private void Awake()
         {
-            
             microphones.options.Clear();
 
             for (int i = 0; i < Microphone.devices.Length; i++)
