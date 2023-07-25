@@ -16,5 +16,6 @@ pip install transformers
 pip install chardet  
 pip install accelerate   
 pip install pyzmq  
+pip install bitsandbytes
 
 NLLP 2.9GB VRAM
