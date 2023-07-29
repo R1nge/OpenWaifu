@@ -3259,8 +3259,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1069822940}
   m_HandleRect: {fileID: 1069822939}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5397,8 +5397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba07bf7dff4f4d90b8b05e3396819030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 338464691}
-  send: {fileID: 899901286}
 --- !u!1 &1612505042
 GameObject:
   m_ObjectHideFlags: 0

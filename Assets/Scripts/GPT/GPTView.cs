@@ -58,7 +58,7 @@ namespace GPT
             _gpt = new Gpt(personality);
 
             _gpt.OnDeltaGenerated += UpdateText;
-            _gpt.OnFinishedGeneration += tcpClient.RequestMessage;
+            _gpt.OnFinishedGeneration += tcpClient.CreateNewThread;//tcpClient.RequestMessage;
             tcpClient.OnFinishedTranslation += Voice;
 
             _gpt.Init();

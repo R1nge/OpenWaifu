@@ -1,33 +1,32 @@
-from server import Server
-import time
-import nllb
+import re
 import asyncio
-import torch
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from server import Server
+from nllb import Translator
+from pygmalion import Pygmalion
+from emotion import Emotion_Analyzer
+from text_formatter import Text_Formater
 
-tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-200-distilled-600M", src_lang="eng_Latn")
-model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M",
-                                            torch_dtype=torch.float16,
-                                            device_map= "auto",
-                                            low_cpu_mem_usage=True,
-                                            #load_in_8bit= True
-                                            )
+MAX_LENGTH = 250
 
-translator = nllb.Translator(tokenizer, model)
-translator.init()
+translator = Translator()
+pygmalion = Pygmalion()
+emotion_analyzer = Emotion_Analyzer()
+text_formatter = Text_Formater()
 
 server = Server("*", "12345")
-server.init()
 
 async def main():
     print("Server started")
     while True:
-        req = server.receive()
-        await translate(req, "jpn_Jpan")
+        request = server.receive()
+        text_string = request.decode()
+        re.sub(r'(\r\n.?)+', r'\r\n', text_string)
+        print(emotion_analyzer.analyze(text_string))
+        await translate(text_string, "jpn_Jpan")
         
-async def translate(text, target_language):
-    text_string = text.decode()
-    translation = await translator.translate(text_string, target_language)
+async def translate(text:str, target_language:str):
+    translation = await translator.translate(text, target_language, MAX_LENGTH)
     server.send(translation)
+    pass
     
 asyncio.run(main())

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using AsyncIO;
 using NetMQ;
 using NetMQ.Sockets;
@@ -6,12 +7,21 @@ using UnityEngine;
 
 public class MyTcpClient : MonoBehaviour
 {
-    private string _host = "localhost";
+    private string _host = "192.168.1.14";
     private string _port = "12345";
 
     public event Action<string> OnFinishedTranslation;
 
-    public void RequestMessage(string text)
+    public void CreateNewThread(string text)
+    {
+        Thread requestThread = new Thread(() => { RequestMessage(text); })
+        {
+            Name = "Request Thread"
+        };
+        requestThread.Start();
+    }
+
+    private void RequestMessage(object text)
     {
         var messageReceived = false;
         var message = "";
