@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,20 +8,22 @@ using VoicevoxBridge;
 //TODO: create a 3d hand from tracking data
 //TODO: translate every language into english or detect target language
 //TODO: add blink
-//TODO: detect emotion behind user voice https://github.com/x4nth055/emotion-recognition-using-speech, 
-//I'll have to create a wrapper around this python lib
+//TODO: change voice depending on emotion
 
 namespace GPT
 {
     public class GptView : MonoBehaviour
     {
+        [SerializeField] private SkinnedMeshRenderer face;
         [SerializeField] private PersonalitySO personality;
         [SerializeField] private int speakerId; //TODO: create a list with enums (Voice charatcer name, Voice tone)
         [SerializeField] private AudioSource voiceAudio;
         [SerializeField] private TMP_InputField request;
         [SerializeField] private TextMeshProUGUI response;
         [SerializeField] private Button prompt;
+
         [SerializeField] private Toggle voiceToggle;
+
         //TODO: rewrite voicevox to get rid from external dependency
         [SerializeField] private VOICEVOX voiceVox;
 
@@ -35,6 +36,9 @@ namespace GPT
         private MicrophoneRecorder _microphoneRecorder;
         private bool _voice;
 
+        private JsonParser _jsonParser;
+        private EmotionController _emotionController;
+
         [Inject]
         private void Construct(MicrophoneRecorder microphoneRecorder)
         {
@@ -43,6 +47,9 @@ namespace GPT
 
         private void Awake()
         {
+            _jsonParser = new JsonParser();
+            _emotionController = new EmotionController(face);
+
             InitGpt();
 
             _speechSynth = new VoiceVoxSpeech(speakerId, voiceVox);
@@ -58,10 +65,21 @@ namespace GPT
             _gpt = new Gpt(personality);
 
             _gpt.OnDeltaGenerated += UpdateText;
-            _gpt.OnFinishedGeneration += tcpClient.CreateNewThread;//tcpClient.RequestMessage;
-            tcpClient.OnFinishedTranslation += Voice;
+            _gpt.OnFinishedGeneration += tcpClient.GetMessage;
+            tcpClient.OnMessageReceived += Parse;
 
             _gpt.Init();
+        }
+
+        private void Parse(string json)
+        {
+            var data = _jsonParser.Parse(json);
+            print(data.text);
+
+            data.emotions = data.emotions.Except(new[] { "others" }).ToArray();
+            
+            _emotionController.SetEmotion(data.emotions[0]);
+            Voice(data.text);
         }
 
         private void SendRequest(string text)
@@ -80,7 +98,7 @@ namespace GPT
         {
             response.text = text;
         }
-        
+
         private async void Voice(string text)
         {
             if (_voice)
@@ -92,7 +110,7 @@ namespace GPT
         private void OnDestroy()
         {
             _gpt.OnDeltaGenerated -= UpdateText;
-            tcpClient.OnFinishedTranslation -= Voice;
+            tcpClient.OnMessageReceived -= Voice;
         }
     }
 }

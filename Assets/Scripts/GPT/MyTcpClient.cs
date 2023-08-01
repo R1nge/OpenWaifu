@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using AsyncIO;
 using NetMQ;
 using NetMQ.Sockets;
@@ -10,18 +11,16 @@ public class MyTcpClient : MonoBehaviour
     private string _host = "192.168.1.14";
     private string _port = "12345";
 
-    public event Action<string> OnFinishedTranslation;
+    public event Action<string> OnMessageReceived;
 
-    public void CreateNewThread(string text)
+    public async void GetMessage(string text)
     {
-        Thread requestThread = new Thread(() => { RequestMessage(text); })
-        {
-            Name = "Request Thread"
-        };
-        requestThread.Start();
+        var result = Task.Run(() => RequestMessage(text));
+        await result;
+        OnMessageReceived?.Invoke(result.Result);
     }
 
-    private void RequestMessage(object text)
+    private string RequestMessage(object text)
     {
         var messageReceived = false;
         var message = "";
@@ -33,8 +32,11 @@ public class MyTcpClient : MonoBehaviour
             if (socket.TrySendFrame($"{text}"))
             {
                 messageReceived = socket.TryReceiveFrameString(timeout, out message);
-                print($"Socket has received a message: {message}");
-                OnFinishedTranslation?.Invoke(message);
+
+                if (messageReceived)
+                {
+                    print($"Socket has received a message: {message}");
+                }
             }
         }
 
@@ -44,6 +46,7 @@ public class MyTcpClient : MonoBehaviour
             message = "Could not receive message from server!";
             print(message);
         }
-        //_messageCallback(message);
+
+        return message;
     }
 }
