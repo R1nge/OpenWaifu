@@ -15,3 +15,10 @@ pip install pyzmq
 pip install pysentimiento
 
 NLLB 2.9GB VRAM
+
+Characters:
+https://www.chub.ai/characters
+https://booru.plus/+pygmalion
+
+Create json:
+https://zoltanai.github.io/character-editor/
