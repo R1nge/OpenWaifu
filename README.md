@@ -22,3 +22,7 @@ https://booru.plus/+pygmalion
 
 Create json:  
 https://zoltanai.github.io/character-editor/
+
+
+Linux:  
+sudo apt install nvidia-cuda-toolkit  
