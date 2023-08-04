@@ -26,3 +26,4 @@ https://zoltanai.github.io/character-editor/
 
 Linux:  
 sudo apt install nvidia-cuda-toolkit  
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/distro/ubuntu.html?highlight=ubuntu
