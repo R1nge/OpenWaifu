@@ -1,5 +1,7 @@
 # Waifu
 
+CURRENTLY REQUIRES OpenAI KEY (Whisper, GPT)
+
 Install conda  
 https://conda.io
 
