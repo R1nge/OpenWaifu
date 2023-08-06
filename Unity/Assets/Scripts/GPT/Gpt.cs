@@ -24,12 +24,13 @@ namespace GPT
 
         public void Init()
         {
+            var config = Resources.Load<OpenAIConfiguration>("OpenAIConfiguration");
             _gptApi = new OpenAIClient
             (
                 new OpenAIAuthentication
                 (
-                    "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",
-                    "org-q208lJQ2f6076dBHNaHpmN4b"
+                    config.ApiKey,
+                    config.OrganizationId
                 )
             );
         }
