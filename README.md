@@ -1,6 +1,6 @@
 # Waifu
 
-Install conda
+Install conda  
 https://conda.io
 
 Create new environment  
