@@ -33,11 +33,11 @@ sudo apt install nvidia-cuda-toolkit
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/distro/ubuntu.html?highlight=ubuntu  
 
 ### CPU
-docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
-docker run --rm -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
+sudo docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
+sudo docker run --rm -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
 
 ### GPU
-docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
+sudo docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
 sudo docker run --rm --runtime=nvidia --gpus all -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:nvidia-ubuntu20.04-latest
 
 
