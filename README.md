@@ -1,9 +1,11 @@
-# Waifu
+# OpenWaifu
+
+CURRENTLY REQUIRES an OPEN AI KEY (Whisper, GPT)
 
 Install conda  
 https://conda.io
 
-Create new environment  
+Create a new environment  
 conda create -n waifu python=3.9.17  
 conda activate waifu  
 
@@ -33,18 +35,20 @@ sudo apt install nvidia-cuda-toolkit
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/distro/ubuntu.html?highlight=ubuntu  
 
 ### CPU
-docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
-docker run --rm -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
+sudo docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
+sudo docker run --rm -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
 
 ### GPU
-docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
+sudo docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
 sudo docker run --rm --runtime=nvidia --gpus all -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:nvidia-ubuntu20.04-latest
 
 
 # Characters  
-
 https://www.chub.ai/characters  
 https://booru.plus/+pygmalion  
 
-Create json:  
+Create a json file for pygmalion:  
 https://zoltanai.github.io/character-editor/
+
+# Run
+Go to the Python directory and run main.py
