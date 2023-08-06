@@ -1,11 +1,13 @@
 # Waifu
 
-CURRENTLY REQUIRES OpenAI KEY (Whisper, GPT)
+CURRENTLY REQUIRES an OPEN AI KEY (Whisper, GPT)
+
+Android: Works ONLY on ARM64, because of an external library 
 
 Install conda  
 https://conda.io
 
-Create new environment  
+Create a new environment  
 conda create -n waifu python=3.9.17  
 conda activate waifu  
 
@@ -47,7 +49,7 @@ sudo docker run --rm --runtime=nvidia --gpus all -p 0.0.0.0:50021:50021 --env VV
 https://www.chub.ai/characters  
 https://booru.plus/+pygmalion  
 
-Create json:  
+Create a json file for pygmalion:  
 https://zoltanai.github.io/character-editor/
 
 # Run
