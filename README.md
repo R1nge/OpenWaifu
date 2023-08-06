@@ -2,8 +2,6 @@
 
 CURRENTLY REQUIRES an OPEN AI KEY (Whisper, GPT)
 
-Android: Works ONLY on ARM64, because of an external library 
-
 Install conda  
 https://conda.io
 
