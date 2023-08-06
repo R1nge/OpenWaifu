@@ -14,6 +14,7 @@
 
 /Unity/.idea/
 /Unity/[Aa]ssets/[Rr]esources/*
+/Unity/[Aa]ssets/[Rr]esources.meta
 /Unity/Packages/com.ptc.vuforia.engine-10.15.4.tgz
 
 /Unity/Packages/com.github.homuler.mediapipe/Runtime/Plugins
