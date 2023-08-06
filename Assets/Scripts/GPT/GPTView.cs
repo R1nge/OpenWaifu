@@ -8,7 +8,6 @@ using VoicevoxBridge;
 //TODO: create a 3d hand from tracking data
 //TODO: translate every language into english or detect target language
 //TODO: add blink
-//TODO: change voice depending on emotion
 
 namespace GPT
 {
@@ -21,12 +20,9 @@ namespace GPT
         [SerializeField] private TMP_InputField request;
         [SerializeField] private TextMeshProUGUI response;
         [SerializeField] private Button prompt;
-
         [SerializeField] private Toggle voiceToggle;
-
         //TODO: rewrite voicevox to get rid from external dependency
         [SerializeField] private VOICEVOX voiceVox;
-
         [SerializeField] private MyTcpClient tcpClient;
 
         private Gpt _gpt;
@@ -84,6 +80,7 @@ namespace GPT
 
         private void SendRequest(string text)
         {
+            _emotionController.ResetEmotion();
             Stop();
             _gpt.SendRequest(text);
         }

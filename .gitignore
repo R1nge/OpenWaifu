@@ -14,6 +14,8 @@
 /**/Sirenix/
 /**/Sirenix.meta
 
+/[Aa]ssets/Python/__pycache__/
+
 /.idea/
 
 /Packages/com.ptc.vuforia.engine-10.15.4.tgz

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using AsyncIO;
 using NetMQ;
@@ -25,7 +24,8 @@ public class MyTcpClient : MonoBehaviour
         var messageReceived = false;
         var message = "";
         ForceDotNet.Force();
-        var timeout = new TimeSpan(0, 0, 10);
+        var timeout = new TimeSpan(0, 0, 30);
+        
         using (var socket = new RequestSocket())
         {
             socket.Connect($"tcp://{_host}:{_port}");

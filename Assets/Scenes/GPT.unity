@@ -2375,6 +2375,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4788187525684446852
       objectReference: {fileID: 0}
+    - target: {fileID: 6789551710490046972, guid: dbcea596f18f2ee47a83ba2bb6822528, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9044108384874666050, guid: dbcea596f18f2ee47a83ba2bb6822528, type: 3}
       propertyPath: m_DirtyAABB
       value: 0
@@ -2454,6 +2458,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6786206324271945828, guid: dbcea596f18f2ee47a83ba2bb6822528, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1067397724}
+    - targetCorrespondingSourceObject: {fileID: 6786206324271945828, guid: dbcea596f18f2ee47a83ba2bb6822528, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1067397733}
   m_SourcePrefab: {fileID: 100100000, guid: dbcea596f18f2ee47a83ba2bb6822528, type: 3}
 --- !u!1 &788215153
 GameObject:
@@ -3232,7 +3239,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1069822940}
   m_HandleRect: {fileID: 1069822939}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3642,6 +3649,22 @@ MonoBehaviour:
   maxVolume: -1.9970775
   smoothness: 0.05
   usePhonemeBlend: 0
+--- !u!114 &1067397733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067397715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ea1f88e8d74e04e9341465573a4ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interval: 5
+  ClosingTime: 0.06
+  OpeningSeconds: 0.03
+  CloseSeconds: 0.1
 --- !u!1 &1069822938
 GameObject:
   m_ObjectHideFlags: 0
@@ -5200,7 +5223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1562557306}
-  voicevoxEngineURL: http://192.168.1.167:50021/
+  voicevoxEngineURL: http://192.168.1.14:50021/
   enableLog: 1
 --- !u!114 &1562557302
 MonoBehaviour:
