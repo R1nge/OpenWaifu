@@ -13,7 +13,7 @@
 /Python/__pycache__/
 
 /Unity/.idea/
-
+/Unity/[Aa]ssets/[Rr]esources/*
 /Unity/Packages/com.ptc.vuforia.engine-10.15.4.tgz
 
 /Unity/Packages/com.github.homuler.mediapipe/Runtime/Plugins

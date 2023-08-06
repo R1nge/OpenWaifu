@@ -23,7 +23,8 @@ namespace GPT
         [SerializeField] private Toggle voiceToggle;
         //TODO: rewrite voicevox to get rid from external dependency
         [SerializeField] private VOICEVOX voiceVox;
-        [SerializeField] private MyTcpClient tcpClient;
+        
+        private MyTcpClient _tcpClient;
 
         private Gpt _gpt;
         private ISpeechSynth _speechSynth;
@@ -43,6 +44,7 @@ namespace GPT
 
         private void Awake()
         {
+            _tcpClient = new MyTcpClient();
             _jsonParser = new JsonParser();
             _emotionController = new EmotionController(face);
 
@@ -61,8 +63,8 @@ namespace GPT
             _gpt = new Gpt(personality);
 
             _gpt.OnDeltaGenerated += UpdateText;
-            _gpt.OnFinishedGeneration += tcpClient.GetMessage;
-            tcpClient.OnMessageReceived += Parse;
+            _gpt.OnFinishedGeneration += _tcpClient.GetMessage;
+            _tcpClient.OnMessageReceived += Parse;
 
             _gpt.Init();
         }
@@ -107,7 +109,7 @@ namespace GPT
         private void OnDestroy()
         {
             _gpt.OnDeltaGenerated -= UpdateText;
-            tcpClient.OnMessageReceived -= Voice;
+            _tcpClient.OnMessageReceived -= Voice;
         }
     }
 }
