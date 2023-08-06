@@ -42,9 +42,11 @@ sudo docker run --rm --runtime=nvidia --gpus all -p 0.0.0.0:50021:50021 --env VV
 
 
 # Characters  
-
 https://www.chub.ai/characters  
 https://booru.plus/+pygmalion  
 
 Create json:  
 https://zoltanai.github.io/character-editor/
+
+# Run
+Go to the Python directory and run main.py
