@@ -1,4 +1,4 @@
-# Waifu
+# OpenWaifu
 
 CURRENTLY REQUIRES an OPEN AI KEY (Whisper, GPT)
 
