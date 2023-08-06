@@ -45,6 +45,7 @@ namespace GPT
         private void Awake()
         {
             _tcpClient = new MyTcpClient();
+            _tcpClient.Init();
             _jsonParser = new JsonParser();
             _emotionController = new EmotionController(face);
 
