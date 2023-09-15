@@ -1,0 +1,3 @@
+192.168.1.14:50021
+
+TODO: load voiceVox ip adress from config file
