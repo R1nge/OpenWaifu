@@ -3,6 +3,8 @@
 CURRENTLY REQUIRES an OPEN AI KEY (Whisper, GPT)  
 DON'T SHARE YOUR BUILD WITH ANYONE, BECAUSE IT CONTAINS YOUR API KEY!  
 
+Unity 2022.3.5f1
+
 Install conda  
 https://conda.io
 
