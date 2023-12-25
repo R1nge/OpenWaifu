@@ -12,10 +12,7 @@ conda activate waifu
 
 Install dependencies  
 conda install pytorch pytorch-cuda=11.7 -c pytorch -c nvidia  
-pip install transformers  
-pip install accelerate   
-pip install pyzmq  
-pip install pysentimiento
+pip install -r requirements.txt
 
 # VoiceVox 
 
