@@ -14,6 +14,7 @@ conda activate waifu
 
 Install dependencies  
 conda install pytorch pytorch-cuda=11.7 -c pytorch -c nvidia  
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117  
 pip install -r requirements.txt
 
 # VoiceVox 
