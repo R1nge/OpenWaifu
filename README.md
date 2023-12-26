@@ -13,8 +13,8 @@ conda create -n waifu python=3.9.17
 conda activate waifu  
 
 Install dependencies  
-conda install pytorch pytorch-cuda=11.7 -c pytorch -c nvidia  
 conda install cudatoolkit=11.7 -c nvidia  
+conda install pytorch pytorch-cuda=11.7 -c pytorch -c nvidia  
 //pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117 //   
 pip install -r requirements.txt
 
