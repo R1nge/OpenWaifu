@@ -6,7 +6,7 @@ class Translator:
         selected_gpu = 0
         
         if(torch.cuda.is_available()):
-                use_gpu = input('Use GPU? Requires 5GB VRAM (y/n): ').lower().strip() == 'y'
+                use_gpu = input('Translator: Use GPU? Requires 5GB VRAM (y/n): ').lower().strip() == 'y'
                 if (torch.cuda.device_count() > 1):
                         for i in range(torch.cuda.device_count()):
                                 print(torch.cuda.get_device_properties(i).name)
