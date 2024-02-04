@@ -3,6 +3,8 @@
 CURRENTLY REQUIRES an OPEN AI KEY (Whisper, GPT)  
 DON'T SHARE YOUR BUILD WITH ANYONE, BECAUSE IT CONTAINS YOUR API KEY!  
 
+Unity 2022.3.5f1
+
 Install conda  
 https://conda.io
 
@@ -11,12 +13,16 @@ conda create -n waifu python=3.9.17
 conda activate waifu  
 
 Install dependencies  
+conda install -c nvidia cudatoolkit OR conda install -c conda-forge cudatoolkit  
 conda install pytorch pytorch-cuda=11.7 -c pytorch -c nvidia  
+//pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117 //   
 pip install -r requirements.txt
 
 # VoiceVox 
 
 ## Windows
+Install CUDA ToolKit  
+https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local
 
 ### CPU
 docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
@@ -25,7 +31,6 @@ docker run --rm -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voice
 ### GPU
 docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
 docker run --rm --gpus all -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
-
 
 ## Linux  
 Install Cuda Toolkit  
