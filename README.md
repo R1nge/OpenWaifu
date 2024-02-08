@@ -1,5 +1,15 @@
 # OpenWaifu
 
+# Abandoned for now. May be will finish some day.
+
+Progress (Top - newest)
+
+[https://youtu.be/wlIBgkIWuyI](https://youtu.be/wlIBgkIWuyI)  
+
+[https://youtu.be/Nu91NxKmh-k](https://youtu.be/Nu91NxKmh-k)  
+
+[https://youtu.be/KBZrHFgAmYs?si=0AQRcruAmrM9nIyf](https://youtu.be/KBZrHFgAmYs)  
+
 CURRENTLY REQUIRES an OPEN AI KEY (Whisper, GPT)  
 DON'T SHARE YOUR BUILD WITH ANYONE, BECAUSE IT CONTAINS YOUR API KEY!  
 
