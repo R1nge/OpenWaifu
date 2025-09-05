@@ -32,7 +32,10 @@ pip install -r requirements.txt
 
 ## Windows
 Install CUDA ToolKit  
-https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local
+https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local  
+Install Docker  
+https://docs.docker.com/desktop/setup/install/windows-install/  
+
 
 ### CPU
 docker pull voicevox/voicevox_engine:cpu-latest  
@@ -46,6 +49,8 @@ docker run --rm --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:n
 Install Cuda Toolkit  
 sudo apt install nvidia-cuda-toolkit  
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/distro/ubuntu.html?highlight=ubuntu  
+Install Docker  
+https://docs.docker.com/engine/install/ubuntu/#installation-methods  
 
 ### CPU
 docker pull voicevox/voicevox_engine:cpu-latest  
