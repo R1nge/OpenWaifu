@@ -35,12 +35,12 @@ Install CUDA ToolKit
 https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local
 
 ### CPU
-docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
-docker run --rm -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
+docker pull voicevox/voicevox_engine:cpu-latest  
+docker run --rm -it -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:cpu-latest  
 
 ### GPU
-docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
-docker run --rm --gpus all -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
+docker pull voicevox/voicevox_engine:nvidia-latest  
+docker run --rm --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:nvidia-latest
 
 ## Ubuntu Linux  
 Install Cuda Toolkit  
@@ -48,12 +48,12 @@ sudo apt install nvidia-cuda-toolkit
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/distro/ubuntu.html?highlight=ubuntu  
 
 ### CPU
-sudo docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
-sudo docker run --rm -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:cpu-ubuntu20.04-latest  
+docker pull voicevox/voicevox_engine:cpu-latest  
+docker run --rm -it -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:cpu-latest  
 
 ### GPU
-sudo docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest  
-sudo docker run --rm --runtime=nvidia --gpus all -p 0.0.0.0:50021:50021 --env VV_CPU_NUM_THREADS=8 voicevox/voicevox_engine:nvidia-ubuntu20.04-latest
+docker pull voicevox/voicevox_engine:nvidia-latest  
+docker run --rm --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:nvidia-latest
 
 
 # Characters  
